@@ -1,0 +1,18 @@
+server:
+  port: 10010 #服务端口
+spring:
+  application:
+    name: api-gateway #指定服务名
+zuul:
+  routes:
+#    ys: # 这里是路由id，随意写
+#      path: /service-provider/** # 这里是映射路径
+#      serviceId: service-provider # 指定服务名称
+
+    service-provider: /service-provider/** # 这里是映射路径
+    service-consumer: /service-consumer/**
+  prefix: /api
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:10086/eureka
