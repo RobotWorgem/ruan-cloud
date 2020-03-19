@@ -1,15 +1,15 @@
 server:
-  port: 10010 #·şÎñ¶Ë¿Ú
+  port: 10010 #æœåŠ¡ç«¯å£
 spring:
   application:
-    name: api-gateway #Ö¸¶¨·şÎñÃû
+    name: api-gateway #æŒ‡å®šæœåŠ¡å
 zuul:
   routes:
-#    ys: # ÕâÀïÊÇÂ·ÓÉid£¬ËæÒâĞ´
-#      path: /service-provider/** # ÕâÀïÊÇÓ³ÉäÂ·¾¶
-#      serviceId: service-provider # Ö¸¶¨·şÎñÃû³Æ
+#    ys: # è¿™é‡Œæ˜¯è·¯ç”±idï¼Œéšæ„å†™
+#      path: /service-provider/** # è¿™é‡Œæ˜¯æ˜ å°„è·¯å¾„
+#      serviceId: service-provider # æŒ‡å®šæœåŠ¡åç§°
 
-    service-provider: /service-provider/** # ÕâÀïÊÇÓ³ÉäÂ·¾¶
+    service-provider: /service-provider/** # è¿™é‡Œæ˜¯æ˜ å°„è·¯å¾„
     service-consumer: /service-consumer/**
   prefix: /api
 eureka:
