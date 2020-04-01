@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: ruan-mq
+  rabbitmq:
+    host: 122.51.97.52
+    port: 5672
+    virtual-host: /
+    username: polestar
+    password: ruan
+    # 手动ack配置
+    template:
+      mandatory: true
+    listener:
+      simple:
+        acknowledge-mode: manual
+        concurrency: 5
+        max-concurrency: 10
+        prefetch: 1
+
