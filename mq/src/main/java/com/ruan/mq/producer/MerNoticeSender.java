@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.connection.CorrelationData;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 
 import java.io.ByteArrayInputStream;
@@ -19,11 +20,14 @@ public class MerNoticeSender {
     @Autowired
     private RabbitTemplate rabbitTemplate;
 
+    @Autowired
+    private RedisTemplate redisTemplate;
+
     /**
      * 回调函数: confirm确认
      */
     private final RabbitTemplate.ConfirmCallback confirmCallback = (correlationData, ack, cause) -> {
-        log.info("correlationData:->{},ack->{}", correlationData,ack);
+        log.info("correlationData:->{},ack->{}", correlationData, ack);
         String messageId = correlationData.getId();
         if (ack) {
             // TODO 如果confirm返回成功 则进行更新BrokerMessageLog表消费状态为成功
@@ -44,11 +48,11 @@ public class MerNoticeSender {
             ObjectInputStream ois = new ObjectInputStream(new ByteArrayInputStream(message.getBody()));
             trans = (Trans) ois.readObject();
         } catch (IOException e) {
-            log.error("反序列化消息对象异常",e);
+            log.error("反序列化消息对象异常", e);
         } catch (ClassNotFoundException e) {
-            log.error("消息对象类不存在",e);
+            log.error("消息对象类不存在", e);
         }
-        log.error("return messageData:{}, exchange:{}, routingKey:{}, replyCode:{}, replyText:{}" ,trans, exchange ,routingKey , replyCode ,replyText);
+        log.error("return messageData:{}, exchange:{}, routingKey:{}, replyCode:{}, replyText:{}", trans, exchange, routingKey, replyCode, replyText);
     };
 
     public void sendNoticeData(Trans trans) {
@@ -56,6 +60,7 @@ public class MerNoticeSender {
         rabbitTemplate.setReturnCallback(returnCallback);
 
         CorrelationData correlationData = new CorrelationData(trans.getId().concat(trans.getType()));
-        rabbitTemplate.convertAndSend(QueueConfig.MERCHANT_NOTICE_EXCHANGE_NAME,null,trans,correlationData);
+        rabbitTemplate.convertAndSend(QueueConfig.MERCHANT_NOTICE_EXCHANGE_NAME, null, trans, correlationData);
+        redisTemplate.opsForValue().set(correlationData.getId(), trans.getType());
     }
 }

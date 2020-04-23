@@ -1,4 +1,8 @@
 spring:
+  redis:
+    database: 1
+    host: ${REDIS_HOST:122.51.97.52}
+    port: ${REDIS_PORT:6379}
   application:
     name: ruan-mq
   rabbitmq:
@@ -7,6 +11,8 @@ spring:
     virtual-host: /
     username: polestar
     password: ruan
+    publisher-confirms: true
+    publisher-returns: true
     # 手动ack配置
     template:
       mandatory: true
