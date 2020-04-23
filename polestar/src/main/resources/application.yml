@@ -1,0 +1,13 @@
+server:
+  port: 9981 #服务端口
+spring:
+  application:
+    name: polestar #指定服务名
+  datasource:
+    url: jdbc:mysql://122.51.97.52:33306/ruan
+    username: root
+    password: polestar
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:10086/eureka

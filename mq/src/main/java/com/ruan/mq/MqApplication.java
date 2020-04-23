@@ -1,20 +1,13 @@
 package com.ruan.mq;
 
-import com.ruan.mq.config.RabbitConfig;
-import com.ruan.mq.pojo.Trans;
-import com.ruan.mq.producer.MerNoticeSender;
-import com.ruan.mq.receiver.Receiver;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.amqp.rabbit.core.RabbitTemplate;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-import java.util.concurrent.TimeUnit;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 @Slf4j
 @SpringBootApplication
+@EnableDiscoveryClient
 public class MqApplication {
 
     public static void main(String[] args) {

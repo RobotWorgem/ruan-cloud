@@ -5,12 +5,20 @@ spring:
     name: api-gateway #指定服务名
 zuul:
   routes:
-#    ys: # 这里是路由id，随意写
+#    service-provider: # 这里是路由id，随意写
 #      path: /service-provider/** # 这里是映射路径
+#      url: http://127.0.0.1:8081
+#    service-consumer:
+#      path: /service-consumer/**
+#      url: http://127.0.0.1:80
+#    ruan-mq:
+#      path: /ruan-mq/**
+#      url: http://127.0.0.1:9982
 #      serviceId: service-provider # 指定服务名称
-
     service-provider: /service-provider/** # 这里是映射路径
     service-consumer: /service-consumer/**
+    ruan-mq: /ruan-mq/**
+    polestar: /polestar/**
   prefix: /api
 eureka:
   client:

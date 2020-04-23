@@ -2,7 +2,8 @@ spring:
   redis:
     database: 1
     host: ${REDIS_HOST:122.51.97.52}
-    port: ${REDIS_PORT:6379}
+    port: ${REDIS_PORT:9533}
+    password: polestar
   application:
     name: ruan-mq
   rabbitmq:
@@ -22,4 +23,9 @@ spring:
         concurrency: 5
         max-concurrency: 10
         prefetch: 1
-
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:10086/eureka
+server:
+  port: 9982

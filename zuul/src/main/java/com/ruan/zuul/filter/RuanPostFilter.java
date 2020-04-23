@@ -25,7 +25,7 @@ public class RuanPostFilter extends ZuulFilter {
 
     @Override
     public int filterOrder() {
-        return FilterConstants.SEND_RESPONSE_FILTER_ORDER - 1;
+        return 900;
     }
 
     @Override
@@ -46,6 +46,8 @@ public class RuanPostFilter extends ZuulFilter {
                 body = requestContext.getResponseBody();
             }
             log.info("耗时：{}ms，response：{}", cost, body);
+            // 流读取后需要重新设置内容
+            requestContext.setResponseBody(body);
         } catch (IOException e) {
             e.printStackTrace();
             rethrowRuntimeException(e);
