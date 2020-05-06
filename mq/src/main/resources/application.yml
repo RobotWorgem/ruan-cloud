@@ -1,4 +1,6 @@
 spring:
+  banner:
+     location: ruan
   redis:
     database: 1
     host: ${REDIS_HOST:122.51.97.52}
@@ -23,9 +25,9 @@ spring:
         concurrency: 5
         max-concurrency: 10
         prefetch: 1
-eureka:
-  client:
-    service-url:
-      defaultZone: http://localhost:10086/eureka
+#eureka:
+#  client:
+#    service-url:
+#      defaultZone: http://localhost:10086/eureka
 server:
   port: 9982

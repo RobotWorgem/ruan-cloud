@@ -135,26 +135,6 @@ public class QueueConfig {
     }
 
     /**
-     * 支付订单见证充值查询交换机
-     *
-     * @return
-     */
-//    @Bean
-//    public DirectExchange defaultExchange() {
-//        return new DirectExchange(PAY_ORDER_RECHARGE_EXCHANGE_NAME);
-//    }
-
-//    @Bean
-//    public Queue orderRechargeQueue() {
-//        return QueueBuilder.durable(PAY_ORDER_RECHARGE_QUEUE_PROCESS_NAME).build();
-//    }
-
-//    @Bean
-//    public Binding binding(DirectExchange defaultExchange, Queue orderRechargeQueue) {
-//        return BindingBuilder.bind(orderRechargeQueue).to(defaultExchange).with(PAY_ORDER_RECHARGE_ROUTINGKEY);
-//    }
-
-    /**
      * 私信队列转发交换机，同时绑定真正的消费队列
      *
      * @return
@@ -262,32 +242,32 @@ public class QueueConfig {
     }
 
     @Bean
-    Binding queueTTL0sBinding(FanoutExchange merchantNoticeExchange, Queue delayQueue0sTtl) {
+    Binding queueTtl0sBinding(FanoutExchange merchantNoticeExchange, Queue delayQueue0sTtl) {
         return BindingBuilder.bind(delayQueue0sTtl).to(merchantNoticeExchange);
     }
 
     @Bean
-    Binding queueTTL15sBinding(FanoutExchange merchantNoticeExchange, Queue delayQueue15sTtl) {
+    Binding queueTtl15sBinding(FanoutExchange merchantNoticeExchange, Queue delayQueue15sTtl) {
         return BindingBuilder.bind(delayQueue15sTtl).to(merchantNoticeExchange);
     }
 
     @Bean
-    Binding queueTTL30sBinding(FanoutExchange merchantNoticeExchange, Queue delayQueue30sTtl) {
+    Binding queueTtl30sBinding(FanoutExchange merchantNoticeExchange, Queue delayQueue30sTtl) {
         return BindingBuilder.bind(delayQueue30sTtl).to(merchantNoticeExchange);
     }
 
     @Bean
-    Binding queueTTL60sBinding(FanoutExchange merchantNoticeExchange, Queue delayQueue60sTtl) {
+    Binding queueTtl60sBinding(FanoutExchange merchantNoticeExchange, Queue delayQueue60sTtl) {
         return BindingBuilder.bind(delayQueue60sTtl).to(merchantNoticeExchange);
     }
 
     @Bean
-    Binding queueTTL5MinBinding(FanoutExchange merchantNoticeExchange, Queue delayQueue2MinTtl) {
+    Binding queueTtl5MinBinding(FanoutExchange merchantNoticeExchange, Queue delayQueue2MinTtl) {
         return BindingBuilder.bind(delayQueue2MinTtl).to(merchantNoticeExchange);
     }
 
     @Bean
-    Binding queueTTL15MinBinding(FanoutExchange merchantNoticeExchange, Queue delayQueue3MinTtl) {
+    Binding queueTtl15MinBinding(FanoutExchange merchantNoticeExchange, Queue delayQueue3MinTtl) {
         return BindingBuilder.bind(delayQueue3MinTtl).to(merchantNoticeExchange);
     }
 

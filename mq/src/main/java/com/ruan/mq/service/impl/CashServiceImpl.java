@@ -4,6 +4,9 @@ import com.ruan.mq.constant.TransactionEnum;
 import com.ruan.mq.service.ITransactionService;
 import org.springframework.stereotype.Service;
 
+/**
+ * @author XY
+ */
 @Service
 public class CashServiceImpl implements ITransactionService {
 

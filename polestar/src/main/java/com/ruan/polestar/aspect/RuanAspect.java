@@ -25,6 +25,7 @@ public class RuanAspect {
 
     @Around("aspect()&&@annotation(anno)")
     public Object interceptor(ProceedingJoinPoint point, Ruan anno) {
+
         StringBuilder result = new StringBuilder();
         Object[] arguments = point.getArgs();
         Arrays.stream(arguments).forEach((arg)->{
@@ -32,12 +33,12 @@ public class RuanAspect {
             result.append(arg);
         });
         log.info(result.toString());
-        result.append(anno.key());
-        log.info(result.toString());
-        result.append(anno.desc());
-        log.info(result.toString());
-        result.append(anno.result());
-        log.info(result.toString());
-        return result;
+        Object res = null;
+        try {
+            res = point.proceed();
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+        }
+        return res;
     }
 }

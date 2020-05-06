@@ -13,8 +13,14 @@ import java.security.Key;
 public class AopCtrl {
 
     @Ruan(key = "key",desc = "desc",result = String.class)
+    @RequestMapping("/testByArgs")
+    public void testAopByArgs(String name, String password, int age){
+        log.info("Controller test AOP");
+    }
+
+    @Ruan(key = "key",desc = "desc",result = String.class)
     @RequestMapping("/test")
-    public void testAop(String name, String password, int age){
-        log.info("test AOP");
+    public void testAop(){
+        log.info("Controller test AOP");
     }
 }

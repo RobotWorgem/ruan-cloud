@@ -14,6 +14,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * 工厂+策略模式
+ * @author XY
  */
 @Slf4j
 public class TransactionService {
@@ -37,8 +38,8 @@ public class TransactionService {
     }
 
     public static void register(ITransactionService transactionService) {
-        log.info("register type: {}, desc: {}", transactionService.getTransaction().getType(), transactionService.getTransaction().getDesc());
         transactionServiceMap.put(transactionService.getTransaction().getType(), transactionService);
+        log.info("register type: {}, desc: {}", transactionService.getTransaction().getType(), transactionService.getTransaction().getDesc());
     }
 
     public static String transactions(Trans trans) {

@@ -35,10 +35,10 @@ public class MerNoticeReceiver {
 
         Long deliveryTag = (Long) headers.get(AmqpHeaders.DELIVERY_TAG);
         log.info("received message from broker,notice-message -> {},properties -> {}", trans, headers);
-        String mesID = trans.getId().concat(trans.getType());
-        if (redisTemplate.hasKey(mesID)) {
-            log.info("Message ID: {}", mesID);
-            redisTemplate.delete(mesID);
+        String mesId = trans.getId().concat(trans.getType());
+        if (redisTemplate.hasKey(mesId)) {
+            log.info("Message ID: {}", mesId);
+            redisTemplate.delete(mesId);
 
             String msg = TransactionService.transactions(trans);
             log.info("msg:{}", msg);

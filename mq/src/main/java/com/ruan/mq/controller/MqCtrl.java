@@ -16,7 +16,7 @@ public class MqCtrl {
     private MerNoticeSender noticeSender;
 
     @RequestMapping("/send")
-    public void sendMQ(){
+    public void sendMq(){
         Trans trans = new Trans("222","CASH");
         log.info("开始发送MQ消息");
         noticeSender.sendNoticeData(trans);
